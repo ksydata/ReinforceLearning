@@ -75,8 +75,43 @@
     2.2.2. MDP algorithm
 
 
-3. 랜덤 정책과 최적 정책의 기대 이익 비교
+3. 랜덤 정책과 최적 정책의 기대 이익 비교 [MDP.ipynb]
 
 4. 정책과 가치함수
 
+    4.1. 정책 $\pi$는 어떤 상태 s에서 행동 a를 선택할 확률 분포
+
+    $\pi(a \mid s) = P(a \mid s)$
+
+    4.2. 강화학습 알고리즘의 틀(pesudo code)
+
+    ```
+    정책 $pi$를 난수로 초기화한다. 
+    while (not 수렴 조건)
+        $pi$로 에피소드를 생성한다. # 현재 정책으로 training data 수집
+        에피소드로 $pi$를 개선한다. # 훈련 데이터로 정책 개선
+    $pi*$ = $pi$
+    ```
+
+    4.3. 정책을 평가하는 가치 함수 $v_pi(s)$의 계산 [교재 67~69쪽]
+
+    Q1. 가치함수를 어떻게 게산할 것인가
+
+    Q2. 무한하게 많은 정책 중에서 최적 정책 $pi*$를 어떻게 빠르게 찾을 수 있을까
+
+    $v_pi(s) = E(R \mid s) = \Sigma_{s에서 출발하는 궤적(trajectory, path) z} p(z) \cdot R(z), s \in S$이며, Reward는 from $s_t$부터 $s_{infty}$ last state까지 무수히 많다.  
+
+    향후 time difference라는 formula를 통해 간단하게 계산된다. 
+
+
 5. 강화학습의 난이도와 학습방법의 이해
+
+    5.1.
+
+    학습하는 과정에서 policy가 개선되므로 training data의 확률분포가 계속 변한다. (non-stationary)
+
+    data sample 간의 correlation이 높다. state의 변화, action의 변화가 sequential하게 relation이 존재할 수밖에 없다. (bias 편향 증가)
+
+    Reward 자체를 알 수 없어 보상 설계가 어려운 과업이 현실에 많다. 이 경우 imatation learning 등을 활용한다. 
+
+    5.2. 문제해결전략
