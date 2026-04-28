@@ -104,3 +104,23 @@ $$= \argmax_{a_t} \int_{a_t} Q(S_t, a_t) \cdot P(a_t \mid S_t) \,da_t$$
 
 $$P^*(a_t \mid S_t) = \delta(a_t - a_t^*)$$ 최적 정책은 최적 행동 $$at∗a_t^*
 at∗​$$만 100% 선택한다. 
+
+# 3-2. Monte Carlo [MC] How can we get Q*?
+
+
+# 3-3. Temporal difference [TD] & SARSA
+
+
+# 3-4. MC vs TD
+
+# 4-1. On-policy vs Off-policy 
+
+
+# 4-2. Q-Learning [심화편]
+
+
+# 4-3. SARSA vs Q-Learning
+
+
+# 4-4. n-step TD & n-step Q-Learning
+
