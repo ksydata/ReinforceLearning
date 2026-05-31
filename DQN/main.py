@@ -60,6 +60,8 @@ def main():
     # ε 감소 비율 (곱 스케줄링)
     parser.add_argument("--epsilon-min",   type=float, default=0.01)
     # ε 하한값
+    parser.add_argument("--decay-type",    type=str,   default="multiplicative", choices=["multiplicative", "additive"])
+    # ε 감소 방식 (곱 스케줄링 / 합 스케줄링)
     parser.add_argument("--eval",          type=int,   default=20)
     # 평가 에피소드 수 (0이면 평가 스킵)
     args = parser.parse_args()
@@ -82,18 +84,19 @@ def main():
     trainer = AgentTrainer(agent, adapter)
     # 학습/평가 통합 트레이너 생성
 
-    trainer.train(
+    result = trainer.train(
         episodes      = args.episodes,
         epsilon_decay = args.epsilon_decay,
         epsilon_min   = args.epsilon_min,
+        decay_type    = args.decay_type,
     )
     # 학습 시작
 
-    trainer.plot_learning_curve()
+    trainer.plot_learning_curve(result["rewards_history"])
     # 학습 곡선 시각화
 
     if args.eval > 0:
-        trainer.evaluate(episodes = args.eval)
+        eval_result = trainer.evaluate(episodes=args.eval)
         # 평가 시작 (eval=0이면 스킵)
 
 
